@@ -23,7 +23,7 @@ def main():
         exit(1)
 
     if not path.isdir(copr_cfg_dir):
-        logger.info("creating {copr_cfg_path}")
+        logger.info(f"creating {copr_cfg_path}")
         mkdir(copr_cfg_dir)
 
     if not path.exists(copr_cfg_path):
