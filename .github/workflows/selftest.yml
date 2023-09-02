@@ -1,8 +1,5 @@
 name: self-test action
 on:
-  pull_request:
-    branches:
-      - main
   push:
     branches:
       - main
@@ -11,10 +8,10 @@ jobs:
   selftest:
     permissions:
       contents: read
+      packages: read
     runs-on: ubuntu-latest
     container:
-      image: fedora:38
-      options: --privileged
+      image: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}/copr-build:latest
     steps:
       - name: checkout to execute local action
         uses: actions/checkout@v3
