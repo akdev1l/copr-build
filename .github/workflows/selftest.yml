@@ -1,0 +1,27 @@
+name: self-test action
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  selftest:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    container:
+      image: fedora:38
+      options: --privileged
+    steps:
+      - name: checkout to execute local action
+        uses: actions/checkout@v3
+      - name: do selftest of the action
+        uses: ./
+        id: selftest
+        with:
+          owner: akdev
+          package-name: selftest-copr-build
+          project-name: personal

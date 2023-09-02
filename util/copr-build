@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+
+if ! podman image exists copr-build:latest; then
+    podman build -t copr-build:latest .
+fi
+
+podman run --rm -it \
+    --security-opt label=disable \
+    -v "$PWD:$PWD" \
+    -v "$HOME/.config/copr:/root/.config/copr:ro" \
+    -w "$PWD" \
+    copr-build:latest

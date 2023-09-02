@@ -1,0 +1,30 @@
+name: test copr build action
+description: 'Tests copr-build action by building a package in COPR'
+
+inputs:
+  project-name:
+    description: 'COPR Project Name'
+    required: true
+  package-name:
+    description: 'Package name in COPR'
+    required: true
+  owner:
+    description: 'COPR owner'
+    default: ${{ github.repository_owner }}
+  committish:
+    description: "Comittish for COPR to track"
+    default: "main"
+
+runs:
+  using: composite
+  steps:
+    - name: build package in COPR
+      id: calculate
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      run: |
+        ./copr-build \
+          --owner ${{ inputs.owner }} \
+          --committish ${{ inputs.committish }} \
+          --project-name=${{ inputs.project-name }} \
+          --package-name=${{ inputs.package-name }} >> $GITHUB_OUTPUT
