@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/akdev1l/copr-build/compare/v1.0.0...v1.0.1) (2023-09-02)
+
+
+### Bug Fixes
+
+* use needs instead of jobs ([b07e072](https://github.com/akdev1l/copr-build/commit/b07e072125438485c818a6f2354b221ae47b54e0))
+
 ## 1.0.0 (2023-09-02)
 
 
