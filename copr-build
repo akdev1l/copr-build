@@ -2,7 +2,7 @@
 
 from argparse import ArgumentParser
 from logging import basicConfig, getLogger, INFO
-from os import getenv, path
+from os import getenv, mkdir, path
 from sys import exit
 
 from copr.v3 import Client

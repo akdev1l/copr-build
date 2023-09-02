@@ -55,3 +55,24 @@ jobs:
           password: ${{ env.REGISTRY_PASSWORD }}
           extra-args: |
             --disable-content-trust
+
+  selftest:
+    permissions:
+      contents: read
+      packages: read
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}/copr-build:latest
+    steps:
+      - name: checkout to execute local action
+        uses: actions/checkout@v3
+      - name: do selftest of the action
+        uses: ./
+        id: selftest
+        env:
+          COPR_API_TOKEN_CONFIG: ${{ secrets.COPR_API_TOKEN_CONFIG }}
+        with:
+          owner: akdev
+          package-name: selftest-copr-build
+          project-name: personal
+          git-remote: https://github.com/akdev1l/ublue-update.git
