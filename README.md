@@ -10,6 +10,8 @@ SCM monitoring from COPR.
 
 ## Usage
 
+You need to put your COPR API configuration in a secret and pass it as `COPR_API_TOKEN_CONFIG` environment variable.
+
 Example job to trigger a COPR build for a specific package:
 
 ```yaml
@@ -46,4 +48,10 @@ jobs:
 |`git-remote`|Git Remote to build|No|`https://github.com/${{github.repository_owner}}/${{github.event.repository.name}}`|
 |`committish`|Git committish to build|No|`main`|
 
-NOTE: The package `package-name` will be created if it doesn't exist in COPR.
+OTE: The package `package-name` will be created if it doesn't exist in COPR.
+
+### How to get your COPR API configuration?
+
+1. Go to [https://copr.fedorainfracloud.org/api/](https://copr.fedorainfracloud.org/api/)
+2. Generate a new configuration if the current one is not valid. It will expire every six months.
+3. Copy that output into a GitHub repository secret (or org-level secret)
