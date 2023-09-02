@@ -57,6 +57,7 @@ jobs:
             --disable-content-trust
 
   selftest:
+    needs: push-ghcr
     permissions:
       contents: read
       packages: read
