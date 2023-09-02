@@ -8,6 +8,9 @@ inputs:
   package-name:
     description: 'Package name in COPR'
     required: true
+  git-remote:
+    description: 'git remote URL'
+    default: "https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}.git"
   owner:
     description: 'COPR owner'
     default: ${{ github.repository_owner }}
@@ -26,5 +29,6 @@ runs:
         ./copr-build \
           --owner ${{ inputs.owner }} \
           --committish ${{ inputs.committish }} \
+          --git-remote ${{ inputs.git-remote }} \
           --project-name=${{ inputs.project-name }} \
           --package-name=${{ inputs.package-name }} >> $GITHUB_OUTPUT

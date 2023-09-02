@@ -22,3 +22,4 @@ jobs:
           owner: akdev
           package-name: selftest-copr-build
           project-name: personal
+          git-remote: https://github.com/akdev1l/ublue-update.git
