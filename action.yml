@@ -1,5 +1,5 @@
-name: test copr build action
-description: 'Tests copr-build action by building a package in COPR'
+name: copr-build
+description: 'Build rpm packages in COPR for use in Fedora/RHEL based operating systems'
 
 inputs:
   project-name:
