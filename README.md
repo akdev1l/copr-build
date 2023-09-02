@@ -24,8 +24,8 @@ jobs:
     steps:
       - name: checkout to execute local action
         uses: actions/checkout@v3
-      - name: do selftest of the action
-        uses: ./
+      - name: trigger copr build
+        uses: akdev1l/copr-build@main
         id: selftest
         env:
           COPR_API_TOKEN_CONFIG: ${{ secrets.COPR_API_TOKEN_CONFIG }}
