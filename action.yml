@@ -7,7 +7,7 @@ inputs:
     default: ${{ github.repository_owner }}
   package-name:
     description: 'Package name in COPR'
-    default ${{ github.event.repository.name }}
+    default: ${{ github.event.repository.name }}
   git-remote:
     description: 'git remote URL'
     default: "https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}.git"
