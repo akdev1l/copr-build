@@ -4,10 +4,10 @@ description: 'Tests copr-build action by building a package in COPR'
 inputs:
   project-name:
     description: 'COPR Project Name'
-    required: true
+    default: ${{ github.repository_owner }}
   package-name:
     description: 'Package name in COPR'
-    required: true
+    default ${{ github.event.repository.name }}
   git-remote:
     description: 'git remote URL'
     default: "https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}.git"
