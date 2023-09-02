@@ -18,6 +18,8 @@ jobs:
       - name: do selftest of the action
         uses: ./
         id: selftest
+        env:
+          COPR_API_TOKEN_CONFIG: ${{ secrets.COPR_API_TOKEN_CONFIG }}
         with:
           owner: akdev
           package-name: selftest-copr-build

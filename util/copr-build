@@ -9,4 +9,6 @@ podman run --rm -it \
     -v "$PWD:$PWD" \
     -v "$HOME/.config/copr:/root/.config/copr:ro" \
     -w "$PWD" \
+    -e COPR_API_TOKEN_CONFIG \
+    -e COPR_BUILD_LOG \
     copr-build:latest

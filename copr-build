@@ -2,7 +2,7 @@
 
 from argparse import ArgumentParser
 from logging import basicConfig, getLogger, INFO
-from os import getenv
+from os import getenv, path
 from sys import exit
 
 from copr.v3 import Client
@@ -10,9 +10,29 @@ from copr.v3 import Client
 basicConfig(
     level=getenv('COPR_BUILD_LOG', INFO)
 )
-logger = getLogger("copr-build")
+logger = getLogger(__name__)
 
 def main():
+    copr_api_token_cfg = getenv('COPR_API_TOKEN_CONFIG')
+    copr_cfg_path = path.expanduser("~/.config/copr")
+    copr_cfg_dir = path.dirname(copr_cfg_path)
+    logger.info(f"copr configuration path: {copr_cfg_path}")
+
+    if copr_api_token_cfg is None and not path.exists(copr_cfg_path):
+        logger.error("you need to pass the COPR API configuration as COPR_API_TOKEN_CONFIG")
+        exit(1)
+
+    if not path.isdir(copr_cfg_dir):
+        logger.info("creating {copr_cfg_path}")
+        mkdir(copr_cfg_dir)
+
+    if not path.exists(copr_cfg_path):
+        with open(copr_cfg_path, "w") as copr_cfg_file:
+            logger.info(f"writing credentials to {copr_cfg_path}")
+            print(copr_api_token_cfg, file=copr_cfg_file)
+    else:
+        logger.info("detected existing config, avoiding overwrite")
+
     arg_parser = ArgumentParser()
     arg_parser.add_argument(
         "--project-name",
