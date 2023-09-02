@@ -3,7 +3,6 @@ on:
   push:
       - main
   workflow_dispatch:  
-env:
 
 jobs:
   push-ghcr:
