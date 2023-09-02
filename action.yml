@@ -17,6 +17,9 @@ inputs:
   committish:
     description: "Comittish for COPR to track"
     default: "main"
+  source-build-method:
+    description: "COPR Source Build Method"
+    default: "rpkg"
 
 runs:
   using: composite
@@ -27,6 +30,7 @@ runs:
       working-directory: ${{ github.action_path }}
       run: |
         ./copr-build \
+          --source-build-method ${{ inputs.source-build-method }} \
           --owner ${{ inputs.owner }} \
           --committish ${{ inputs.committish }} \
           --git-remote ${{ inputs.git-remote }} \

@@ -59,6 +59,11 @@ def main():
         default="main",
         help="Git Committish to build in COPR",
     )
+    arg_parser.add_argument(
+        "--source-build-method",
+        default="rpkg",
+        help="COPR Source Build Method for this package (https://docs.pagure.org/copr.copr/user_documentation.html#scm)",
+    )
 
     cli_args = arg_parser.parse_args()
     logger.info(f"copr-build: {cli_args}")
@@ -82,6 +87,7 @@ def main():
                     "clone_url": cli_args.git_remote,
                     "scm_type": "git",
                     "comittish": cli_args.committish,
+                    "source_build_method": cli_args.source_build_method,
                 }
             )
             logger.info(f"created package {copr_package}")
