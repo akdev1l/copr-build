@@ -30,9 +30,9 @@ runs:
       working-directory: ${{ github.action_path }}
       run: |
         ./copr-build \
-          --source-build-method ${{ inputs.source-build-method }} \
-          --owner ${{ inputs.owner }} \
-          --committish ${{ inputs.committish }} \
-          --git-remote ${{ inputs.git-remote }} \
-          --project-name=${{ inputs.project-name }} \
-          --package-name=${{ inputs.package-name }} >> $GITHUB_OUTPUT
+          --source-build-method "${{ inputs.source-build-method }}" \
+          --owner "${{ inputs.owner }}" \
+          --committish "${{ inputs.committish }}" \
+          --git-remote "${{ inputs.git-remote }}" \
+          --project-name "${{ inputs.project-name }}" \
+          --package-name "${{ inputs.package-name }}" >> $GITHUB_OUTPUT
