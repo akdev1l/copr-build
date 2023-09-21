@@ -2,7 +2,7 @@
 
 from argparse import ArgumentParser
 from logging import basicConfig, getLogger, INFO
-from os import getenv, mkdir, path
+from os import getenv, makedirs, path
 from sys import exit
 
 from copr.v3 import Client
@@ -24,7 +24,7 @@ def main():
 
     if not path.isdir(copr_cfg_dir):
         logger.info(f"creating {copr_cfg_path}")
-        mkdir(copr_cfg_dir)
+        makedirs(copr_cfg_dir)
 
     if not path.exists(copr_cfg_path):
         with open(copr_cfg_path, "w") as copr_cfg_file:
